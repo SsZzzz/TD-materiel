@@ -7,6 +7,7 @@ export default defineConfig({
   favicon: '/TD-materiel/logo.png',
   logo: '/TD-materiel/logo.png',
   outputPath: 'docs-dist',
+  hash: true,
   mode: 'site',
   // more config: https://d.umijs.org/config
 });
