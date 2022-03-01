@@ -1,1 +1,1 @@
-module.exports = require("@umijs/fabric").prettier;
+module.exports = require('@umijs/fabric').prettier;
