@@ -1,17 +1,17 @@
 import React, { useEffect, useRef } from 'react';
-import styles from './index.less';
+import './index.less';
 
 // interface selectorProps {
 //   children: React.ReactNode;
 //   selection?: boolean; // 是否可框选
 //   onSelect?: (arr: Array<boolean>) => void; // 选中的回调
-//   scrollRef?: any; // 父元素的 ref
 //   style?: React.CSSProperties;
 //   itemWidth: number; // 子元素宽度
 // }
 
-const Selector = ({ className, children, onSelect, scrollRef, selection = false }) => {
+const Selector = ({ className, contentClassName, children, onSelect, selection = true }) => {
   const ref = useRef(null);
+  const supRef = useRef(null);
 
   useEffect(() => {
     if (selection) addSelection();
@@ -26,22 +26,22 @@ const Selector = ({ className, children, onSelect, scrollRef, selection = false 
   }
 
   function disableScroll() {
-    const top = scrollRef.current.scrollTop;
+    const top = supRef.current.scrollTop;
     return function () {
-      scrollRef.current.scrollTop = top;
+      supRef.current.scrollTop = top;
     };
   }
 
   function addSelection() {
     document.onmousedown = function (e) {
-      if (e.target !== ref.current) return;
+      if (e.target !== supRef.current && e.target !== ref.current) return;
       const posX = e.clientX;
       const posY = e.clientY;
       const div = document.createElement('div');
       const scrollFn = disableScroll();
 
-      scrollRef.current.addEventListener('scroll', scrollFn);
-      div.className = styles.tempDiv;
+      supRef.current.addEventListener('scroll', scrollFn);
+      div.className = 'TD-selector-crop';
       div.style.left = e.clientX + 'px';
       div.style.top = e.clientY + 'px';
       document.body.appendChild(div);
@@ -59,7 +59,7 @@ const Selector = ({ className, children, onSelect, scrollRef, selection = false 
         const width = parseInt(div.style.width);
         const height = parseInt(div.style.height);
         getSelectedBox(top, left + width, top + height, left);
-        scrollRef.current.removeEventListener('scroll', scrollFn);
+        supRef.current.removeEventListener('scroll', scrollFn);
         div.parentNode && div.parentNode.removeChild(div);
         document.onmousemove = null;
         document.onmouseup = null;
@@ -108,8 +108,10 @@ const Selector = ({ className, children, onSelect, scrollRef, selection = false 
   }
 
   return (
-    <div className={className} ref={ref}>
-      {children}
+    <div className={`TD-selector-container ${className}`} ref={supRef}>
+      <div className={contentClassName} ref={ref}>
+        {children}
+      </div>
     </div>
   );
 };
