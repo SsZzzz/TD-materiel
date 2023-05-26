@@ -1,0 +1,72 @@
+.backContainer {
+  height: 24px;
+  margin-bottom: 16px;
+}
+
+.button {
+  position: relative;
+  width: 120px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  outline: none;
+  cursor: pointer;
+
+  &:hover {
+    .circle {
+      width: 100%;
+    }
+
+    .icon {
+      background: #fff;
+    }
+
+    .buttonText {
+      color: #fff;
+    }
+  }
+}
+
+.circle {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  background: #4571f6;
+  border-radius: 24px;
+  transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
+}
+
+.icon {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 8px;
+  display: flex;
+  align-items: center;
+  width: 18px;
+  height: 2px;
+  margin: auto;
+  background: none;
+  transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
+
+  &::before {
+    display: block;
+    width: 8px;
+    height: 8px;
+    border-bottom: 2px solid #fff;
+    border-left: 2px solid #fff;
+    transform: rotate(45deg);
+    content: '';
+  }
+}
+
+.buttonText {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 36px;
+  display: flex;
+  align-items: center;
+  color: #4571f6;
+  transition: all 0.3s cubic-bezier(0.65, 0, 0.076, 1);
+}

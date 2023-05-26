@@ -1,0 +1,122 @@
+.outer {
+  padding: 2px;
+  border-radius: 2px;
+}
+
+.inner {
+  display: flex;
+  padding: 2px 8px;
+  border-radius: 2px;
+
+  span {
+    margin: 0 2px;
+  }
+}
+
+.blue {
+  .outer();
+
+  color: #fff;
+  background-color: #367aef;
+
+  & > div {
+    .inner();
+
+    border: 1px solid #fff;
+  }
+}
+
+.yellow {
+  .outer();
+
+  color: #000;
+  background-color: #f7ce46;
+
+  & > div {
+    .inner();
+
+    border: 1px solid #000;
+  }
+}
+
+.black {
+  .outer();
+
+  color: #fff;
+  background-color: #000;
+
+  & > div {
+    .inner();
+
+    border: 1px solid #fff;
+  }
+}
+
+.white {
+  .outer();
+
+  color: #000;
+  background-color: #fff;
+
+  & > div {
+    .inner();
+
+    border: 1px solid #000;
+  }
+}
+
+.whiteGreen {
+  .outer();
+
+  color: #000;
+  background: linear-gradient(0deg, #67de9d 0%, #fff 100%);
+
+  & > div {
+    .inner();
+
+    border: 1px solid #000;
+  }
+}
+
+.yellowGreen {
+  .outer();
+
+  color: #000;
+  background: #f7c546;
+
+  & > div {
+    .inner();
+
+    border: 1px solid #000;
+
+    & > div:nth-of-type(2) {
+      background: linear-gradient(0deg, #67de9d 0%, #fff 100%);
+    }
+  }
+}
+
+.blueWhite {
+  .outer();
+
+  color: #000;
+  background: linear-gradient(0deg, #60baed 0%, rgb(255 255 255 / 0%) 100%);
+
+  & > div {
+    .inner();
+
+    border: 1px solid #000;
+  }
+}
+
+.gray {
+  .outer();
+
+  color: #000;
+  background: #c5cbcf;
+
+  & > div {
+    .inner();
+
+    border: 1px solid #000;
+  }
+}
